@@ -19,7 +19,7 @@ object Main extends App {
     }
 
     def dfs(s: V): Boolean = {
-      val stack = new util.ArrayDeque[V]()
+      val stack = new util.ArrayDeque[V](h * w)
 
       def dfs0(): Boolean =
         if (stack.isEmpty) false
