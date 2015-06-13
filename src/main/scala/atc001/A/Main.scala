@@ -1,6 +1,7 @@
 package atc001.A
 
 import java.util
+import scala.annotation.{switch, tailrec}
 import scala.io.StdIn
 
 object Main extends App {
@@ -21,16 +22,18 @@ object Main extends App {
     def dfs(s: V): Boolean = {
       val stack = new util.ArrayDeque[V](h * w)
 
+      @tailrec
       def dfs0(): Boolean =
         if (stack.isEmpty) false
         else {
           val (x, y) = stack.pop()
           val next = List((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1))
 
+          @tailrec
           def search(ns: List[V]): Boolean = ns match {
             case Nil     => false
             case v :: vs =>
-              get(v) match {
+              (get(v): @switch) match {
                 case 'g' => true
                 case '.' => stack.push(v); search(vs)
                 case _   => search(vs)
@@ -48,6 +51,7 @@ object Main extends App {
       dfs0()
     }
 
+    @tailrec
     def find(c: Char, x: Int, y: Int): V =
       if (grid(y)(x) == c) (x, y)
       else if (x < w) find(c, x + 1, y)
