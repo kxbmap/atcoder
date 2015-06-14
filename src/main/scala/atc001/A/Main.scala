@@ -38,5 +38,6 @@ object Main extends App {
     case -1 => run(y + 1)
     case x => dfs((x, y))
   }
+
   println(if (run(0)) "Yes" else "No")
 }
