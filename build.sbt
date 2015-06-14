@@ -12,3 +12,6 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.5" % "test"
+
+fork in Test := true
+javaOptions in Test += "-Dline.separator=\n"

@@ -1,17 +1,8 @@
 package atc001.A
 
-import java.io.StringReader
-import org.scalatest.FunSpec
+import util.UnitSpec
 
-/**
- *
- */
-class MainSpec extends FunSpec {
-
-  def solve(input: String): Boolean =
-    Console.withIn(new StringReader(input)) {
-      Main.solve()
-    }
+class MainSpec extends UnitSpec {
 
   describe("solve") {
     it("solve example 1") {
@@ -22,7 +13,7 @@ class MainSpec extends FunSpec {
           |#####
           |#...g""".stripMargin
 
-      assert(!solve(input))
+      assertStdOut(Main, input)("No\n")
     }
 
     it("solve example 2") {
@@ -33,7 +24,7 @@ class MainSpec extends FunSpec {
           |....
           |.g..""".stripMargin
 
-      assert(solve(input))
+      assertStdOut(Main, input)("Yes\n")
     }
 
     it("solve example 3") {
@@ -50,7 +41,7 @@ class MainSpec extends FunSpec {
           |###.#.#.#.
           |#.....#...""".stripMargin
 
-      assert(!solve(input))
+      assertStdOut(Main, input)("No\n")
     }
 
     it("solve example 4") {
@@ -67,7 +58,7 @@ class MainSpec extends FunSpec {
           |#.#.#.#.#.
           |#.....#...""".stripMargin
 
-      assert(solve(input))
+      assertStdOut(Main, input)("Yes\n")
     }
 
     it("solve example 5") {
@@ -75,7 +66,7 @@ class MainSpec extends FunSpec {
         """1 10
           |s..####..g""".stripMargin
 
-      assert(!solve(input))
+      assertStdOut(Main, input)("No\n")
     }
   }
 
