@@ -8,7 +8,7 @@ object Main extends App {
 
   def solve(): Boolean = {
     val Array(h, w) = StdIn.readLine().split(" ").map(_.toInt)
-    val grid = Array.fill(h)(StdIn.readLine().toCharArray)
+    val grid = Array.fill(h)(StdIn.readLine())
 
     def isIn(x: Int, y: Int): Boolean = x >= 0 && x < w && y >= 0 && y < h
 
@@ -34,12 +34,12 @@ object Main extends App {
       dfs0(s._1, s._2)
     }
 
-    def find(c: Char, x: Int, y: Int): (Int, Int) =
-      if (grid(y)(x) == c) (x, y)
-      else if (x < w) find(c, x + 1, y)
-      else find(c, 0, y + 1)
+    def find(c: Char, y: Int): (Int, Int) = grid(y).indexOf(c) match {
+      case -1 => find(c, y + 1)
+      case x  => (x, y)
+    }
 
-    dfs(find('s', 0, 0))
+    dfs(find('s', 0))
   }
 
 }
